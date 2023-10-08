@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather Detector</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        .search-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-input {
+            width: 60%;
+        }
+
+        .search-button {
+            background-color: #333;
+            color: white;
+        }
+
+        .weather-info {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        h5 {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1>Weather Detector</h1>
+    </nav>
+    <div class="container">
+        <div class="search-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control search-input" name="city" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button class="btn search-button" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="weather-info">
+            {% if data.country_code %}
+            <h1>{{ city }}</h1>
+            <h3>Country Code: {{ data.country_code }}</h3>
+            <h5>Coordinate: {{ data.coordinate }}</h5>
+            <h5>Temperature: {{ data.temp }}</h5>
+            <h5>Pressure: {{ data.pressure }}</h5>
+            <h5>Humidity: {{ data.humidity }}</h5>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
